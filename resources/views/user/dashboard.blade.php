@@ -5,28 +5,7 @@
     </div>
 
     <div class="w-full flex justify-between flex-col md:flex-row space-y-4 md:space-y-0">
-        <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center cursor-pointer">
-                <div class="p-3">
-                    <div class="bg-gray-900 shadow-md rounded-xl p-4 text-gray-50 hover:bg-gray-700 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="p-3 flex flex-col">
-                    <div class="text-4xl md:text-5xl font-bold">
-                        789
-                    </div>
-                    
-                    <div class="text-xs font-bold italic">
-                        All Users
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         <div class="w-full md:w-1/4 p-4">
             <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center cursor-pointer">
                 <div class="p-3">
@@ -96,6 +75,29 @@
 
             </div>
         </div>
+
+        <div class="w-full md:w-1/4 p-4">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center justify-between cursor-wait">
+                <div class="p-3 flex flex-col">
+                    <div class="text-xl md:text-3xl font-bold flex py-2">
+                        Rejected
+                    </div>
+                    
+                    <div class="text-xs font-bold italic">
+                        {{ round($rejectedApplicationsCount, 2) }}
+                    </div>
+                </div>
+
+                <div class="p-3">
+                    <div class="bg-gray-900 rounded-full shadow-md p-2 hover:bg-gray-700 transition">
+                        <div class="radial-progress text-gray-50 h-[60pt] w-[60pt]" style="--value:{{ $rejectedApplicationsPercent }};" role="progressbar">
+                            {{ round($rejectedApplicationsPercent, 2) }}%
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <div class="w-full flex justify-between flex-col md:flex-row space-y-4 md:space-y-0">
@@ -103,7 +105,7 @@
             <div class="bg-gray-50 shadow-lg p-5 rounded-2xl h-full w-full">
                 <div class="w-full h-full rounded-xl flex space-x-4 items-center justify-between">
                     <div class="p-3 font-bold">
-                        New Applications
+                        Pending Applications
                     </div>
                     
                     <div class="p-3">
@@ -195,13 +197,13 @@
                                 <div class="font-bold text-sm italic">
                                     Lender Information
                                 </div>
-                                <select type="number" name="lender" class="w-full px-3 py-2 text-sm border-0 shadow-sm rounded-lg lender">
-                                    <option value="">Choose Lender</option>
-                                    <option value="fairmoney,20%,350">Fairmoney (20% Interest, 350 Minimum Credit Score)</option>
-                                    <option value="moneypoint,10%,100">Monie Point (10% Interest, 100 Minimum Credit Score)</option>
-                                    <option value="carbon,10%,100">Carbon (10% Interest, 100 Minimum Credit Score)</option>
-                                    <option value="branch,10%,100">Branch (10% Interest, 100 Minimum Credit Score)</option>
-                                    <option value="okash,10%,100">Okash (10% Interest, 100 Minimum Credit Score)</option>
+                                <select type="number" name="interest" class="w-full px-3 py-2 text-sm border-0 shadow-lg rounded-lg interest" required>
+                                    <option>Choose Lender</option>
+                                    <option value="20">Fairmoney (20% Interest, 350 Minimum Credit Score)</option>
+                                    <option value="10">Monie Point (10% Interest, 100 Minimum Credit Score)</option>
+                                    <option value="10">Carbon (10% Interest, 100 Minimum Credit Score)</option>
+                                    <option value="10">Branch (10% Interest, 100 Minimum Credit Score)</option>
+                                    <option value="10">Okash (10% Interest, 100 Minimum Credit Score)</option>
                                 <select>
                             </div>
                             
@@ -209,7 +211,7 @@
                                 <div class="font-bold text-sm italic">
                                     Loan Amount
                                 </div>
-                                <input type="number" name="amount" class="w-full px-3 py-2 text-sm border-0 shadow-sm rounded-lg amount" placeholder="Enter the loan amount here" />
+                                <input type="number" name="amount" class="w-full px-3 py-2 text-sm border-0 shadow-lg rounded-lg amount" placeholder="Enter the loan amount here" required autocomplete="" />
                             </div>
                         </div>
 
@@ -218,8 +220,8 @@
                                 <div class="font-bold text-sm italic">
                                     Loan Duration
                                 </div>
-                                <select type="number" name="duration" class="w-full px-3 py-2 text-sm border-0 shadow-sm rounded-lg duration">
-                                    <option value="">Choose Preferred Repayment Duration</option>
+                                {{-- <select type="number" name="duration" class="w-full px-3 py-2 text-sm border-0 shadow-lg rounded-lg duration" required>
+                                    <option>Choose Preferred Repayment Duration</option>
                                     <option value="1">1 Month</option>
                                     <option value="2">2 Month</option>
                                     <option value="3">3 Month</option>
@@ -229,37 +231,164 @@
                                     <option value="12">1 Year</option>
                                     <option value="24">2 Year</option>
                                     <option value="36">3 Year</option>
-                                <select>
+                                <select> --}}
+
+                                <input type="date" name="duration" class="w-full px-3 py-2 text-sm border-0 shadow-lg rounded-lg duration" required>
                             </div>
                         </div>
 
                         <div class="w-full">
-                            <button type="button" onclick="processTrx()" class="bg-slate-800 px-5 py-3 rounded-md text-slate-100 hover:text-slate-50 hover:bg-slate-700 apply-for-loan">
-                                Apply
+                            <button type="button" onclick="processTrx()" class="loan-app-btn bg-slate-800 px-5 py-3 rounded-md text-slate-100 hover:text-slate-50 hover:bg-slate-700 flex items-center justify-center space-x-3">
+                                <div class="apply-loan-btn">
+                                    Connect Wallet
+                                </div>
+                                <div class="hidden application-loader">
+                                    <div class="w-[15pt] h-[15pt] rounded-full border-2 border-gray-300 border-r-0 border-t-0 animate-spin">
+                                        
+                                    </div>
+                                </div>
                             </button>
                         </div>
 
                         <script>
-                            function processTrx() {
-                                const data = {
-                                    duration: $('.duration').val(),
-                                    amount: $('.amount').val(),
-                                    lender: $('.lender').val(),
-                                }
-                                
-                                console.log(data)
 
-                                $.ajax({
-                                    url: '/api/applications/create',
-                                    type: 'get',
-                                    data: data,
-                                    success: res => {
-                                        console.log(res)
-                                        
-                                        alert(res.message)
-                                        window.location.reload()
+                            function toggleAppBtnClass (text, class1, class2) {
+                                $('.apply-loan-btn').html(text)
+                                $('.apply-loan-btn').hasClass(class1)
+                                $('.apply-loan-btn').removeClass(class1)
+
+                                $('.apply-loan-btn').hasClass(class2)
+                            }
+                            
+                            $('document').ready(() => {
+                                const account = localStorage.getItem('account')
+                                if(account != undefined){
+                                    console.log(account)
+                                    toggleAppBtnClass('Apply', 'connect-wallet', 'strt-app')
+                                    $('.interest').prop('disabled', false)
+                                    $('.duration').prop('disabled', false)
+                                    $('.amount').prop('disabled', false)
+                                }
+                                else{
+                                    toggleAppBtnClass('Connect Wallet', 'strt-app', 'connect-wallet')
+                                    $('.interest').prop('disabled', true)
+                                    $('.duration').prop('disabled', true)
+                                    $('.amount').prop('disabled', true)
+                                }
+                            })
+
+                            async function connectWallet () {
+                                try{
+                                    window.eth.walletConnect().then(() => {
+                                        toggleAppBtnClass('Apply', 'connect-wallet', 'strt-app')
+
+                                        $('.interest').prop('disabled', false)
+                                        $('.duration').prop('disabled', false)
+                                        $('.amount').prop('disabled', false)
+                                    })
+                                }
+                                catch(e){
+                                    console.log(e)
+                                }
+                            }
+
+                            function pushLoanApp2DB (data) {
+                                $('.application-loader').show()
+                                try{
+                                    $.ajax({
+                                        url: '/api/applications/create',
+                                        type: 'get',
+                                        data: data,
+                                        success: res => {
+                                            console.log(res)
+                                            
+                                            if(res.status === 201){
+                                                alert(res.message)
+                                                window.location.reload()
+                                            }
+                                            else if(res.status === 400 || res.status === 500){
+                                                alert("An error occurred while processing your application")
+                                                
+                                                setTimeout(() => {
+                                                    $('.application-loader').hide() 
+                                                }, 2000);
+                                            }
+                                            else{
+                                                alert("An unknown error has prevented your application from going throough. Please contact the customer care for support")
+
+                                                setTimeout(() => {
+                                                    $('.application-loader').hide() 
+                                                }, 2000);
+                                            }
+                                        }
+                                    })
+                                }
+                                catch(e){
+                                    console.log("Request error")
+
+                                    setTimeout(() => {
+                                        $('.application-loader').hide() 
+                                    }, 2000);
+                                }
+                            }
+
+                            async function verifyCreditScore(){
+                                const creditScore = await window.eth.checkCreditScore();
+
+                                return creditScore
+                            }
+
+                            async function takeLoan(amount, when, interest, lateRepaymentFee){
+                                const response = await window.eth.takeLoan(amount, when, interest, lateRepaymentFee);
+
+                                return response;
+                            }
+
+                            async function processLoanApp () {
+                                
+                                try{
+                                    const rawData = {
+                                        duration: $('.duration').val(),
+                                        amount: $('.amount').val(),
+                                        interest: $('.interest').val(),
                                     }
-                                })
+
+                                    const initDate = `${rawData.duration}`
+                                    const date = new Date(initDate).getTime();
+                                    console.log(date) ;
+
+                                    const response = await takeLoan(rawData.amount, date, rawData.interest, 100);
+
+                                    console.log(response)
+                                    // return ;
+                                    const data = rawData
+                                    data.hash = response.transactionHash
+                                    
+                                    console.log(data)
+
+                                    pushLoanApp2DB(data)  
+                                    
+                                    
+
+                                    setTimeout(() => {
+                                        $('.application-loader').hide() 
+                                    }, 2000);
+                                }
+                                catch(e){
+                                    console.log(e)
+
+                                    $('.application-loader').hide()
+                                }
+                            }
+                            
+                            function processTrx() {
+                                $('.application-loader').show()
+                                
+                                const session = localStorage.getItem('account')
+                                
+                                session ? processLoanApp() : connectWallet();
+                                
+                                return false;
                             }
                         </script>
                     </form>

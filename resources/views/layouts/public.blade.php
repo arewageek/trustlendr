@@ -36,10 +36,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto our-primary-menu">
                     <li><a href="/">Home</a>
-                        {{-- <ul>
-                            <li><a href="#">Personal</a></li>
-                            <li><a href="login.html">Admin</a></li>
-                        </ul> --}}
+                        <ul>
+                            <li><a href="/user">Personal</a></li>
+                            <li><a href="/admin">Admin</a></li>
+                        </ul>
 
                     </li>
                     <li><a href="#">Pages <i class="fas fa-chevron-down"></i></a>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <div class="header-button">
-                        <a class="btn btn-primary" href="/register">Get your creditscore </a>
+                        <a class="btn btn-primary" href="/guage">Get your creditscore </a>
                     </div>
                 </div>
             </div>

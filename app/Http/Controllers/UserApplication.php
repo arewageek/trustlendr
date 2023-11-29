@@ -15,21 +15,16 @@ class UserApplication extends Controller
     public function create (Request $request){
 
         $duration_in_months = $request -> duration;
-        $duration = intval($duration_in_months) * 30;
+        $duration = intval($duration_in_months);
 
-        $lender = $request -> lender;
+        $interest = $request -> interest;
         $amount = $request -> amount;
-
-        $lender_arr = explode(',',$lender);
-        $agent = $lender[0];
-        $interest = $lender[1];
-        $min_credit_score = $lender[2];
+        $transaction_hash = $request -> hash;
 
         $dueDate = Carbon::now() -> addDays($duration);
-
-        $eth = new EthController();
+        $dueDateUnformatted = Carbon::createFromTimestamp('U', $duration/1000)-> addYears(53);
+        $dueDate = $dueDateUnformatted -> format('Y-m-d H:i:s');
         
-        $transaction_hash = $eth -> createID();
 
         $application = new Application();
 

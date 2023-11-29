@@ -59,13 +59,13 @@
                     </div>
                     
                     <div class="text-xs font-bold italic">
-                        {{ $approvedApplications['count'] }}
+                        {{ round($approvedApplications['count'], 2) }}
                     </div>
                 </div>
 
                 <div class="p-3">
                     <div class="bg-gray-900 rounded-full shadow-md p-2 hover:bg-gray-700 transition">
-                        <div class="radial-progress text-gray-50 h-[60pt] w-[60pt]" style="--value:{{ $approvedApplications['percentage'] }};" role="progressbar">{{ $approvedApplications['percentage'] }}%</div>
+                        <div class="radial-progress text-gray-50 h-[60pt] w-[60pt]" style="--value:{{ $approvedApplications['percentage'] }};" role="progressbar">{{ round($approvedApplications['percentage'], 2) }}%</div>
                     </div>
                 </div>
 
@@ -80,13 +80,13 @@
                     </div>
                     
                     <div class="text-xs font-bold italic">
-                        {{ $pendingApplications['count'] }}
+                        {{ round($pendingApplications['count'], 2) }}
                     </div>
                 </div>
 
                 <div class="p-3">
                     <div class="bg-gray-900 rounded-full shadow-md p-2 hover:bg-gray-700 transition">
-                        <div class="radial-progress text-gray-50 h-[60pt] w-[60pt]" style="--value:{{ $pendingApplications['percentage'] }};" role="progressbar">{{ $pendingApplications['percentage'] }}%</div>
+                        <div class="radial-progress text-gray-50 h-[60pt] w-[60pt]" style="--value:{{ $pendingApplications['percentage'] }};" role="progressbar">{{ round($pendingApplications['percentage'], 2) }}%</div>
                     </div>
                 </div>
 

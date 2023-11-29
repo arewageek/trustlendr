@@ -26,6 +26,10 @@ Route::get('/', function () {
     return view('public.home');
 });
 
+Route::get('/guage', function () {
+    return view('public.guage');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
