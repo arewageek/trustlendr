@@ -140,7 +140,7 @@
                         {{-- nav items --}}
                         <div class="my-7 flex flex-col space-y-4 text-gray-700 font-semibold">
                             
-                            <a href="/admin" class="flex w-full p-3 items-center space-x-4 text-sm rounded-xl shadow-inner hover:bg-gray-100">
+                            <a href="/user" class="flex w-full p-3 items-center space-x-4 text-sm rounded-xl shadow-inner hover:bg-gray-100">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-bank" viewBox="0 0 16 16">
                                         <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.501.501 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89L8 0ZM3.777 3h8.447L8 1 3.777 3ZM2 6v7h1V6H2Zm2 0v7h2.5V6H4Zm3.5 0v7h1V6h-1Zm2 0v7H12V6H9.5ZM13 6v7h1V6h-1Zm2-1V4H1v1h14Zm-.39 9H1.39l-.25 1h13.72l-.25-1Z"/>
@@ -151,24 +151,7 @@
                                 </div>
                             </a>
 
-                            <a href="/admin/users" class="flex w-full p-3 items-center space-x-4 text-sm rounded-xl shadow-inner hover:bg-gray-100">
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                    </svg>
-                                </div>
-                                <div class="w-full">
-                                    Users
-                                </div>
-                                <div class="w-full">
-                                    <div class="bg-gray-500 hover:bg-gray-900 transition h-[17pt] w-[17pt] text-xs rounded-md flex items-center justify-center text-gray-50">
-                                        10
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="/admin/applications" class="flex w-full p-3 items-center space-x-4 text-sm  rounded-xl shadow-inner hover:bg-gray-100">
+                            <a href="/user/applications" class="flex w-full p-3 items-center space-x-4 text-sm  rounded-xl shadow-inner hover:bg-gray-100">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-checks" viewBox="0 0 16 16">
                                         <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
@@ -177,11 +160,6 @@
                                 <div class=" w-full flex justify-end items-center space-x-3">
                                     <div class="w-full">
                                         Applications
-                                    </div>
-                                    <div class="w-full">
-                                        <div class="bg-gray-500 hover:bg-gray-900 transition h-[17pt] w-[17pt] text-xs rounded-md flex items-center justify-center text-gray-50">
-                                            3
-                                        </div>
                                     </div>
                                 </div>
                             </a>

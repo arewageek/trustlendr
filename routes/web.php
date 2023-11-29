@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\CreditScoreController;
+use App\Http\Controllers\UserApplicationsController;
 use App\Http\Controllers\UsersDataController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +28,7 @@ Route::get('/', function () {
     return view('public.home');
 });
 
-Route::get('/guage', function () {
+Route::get('/gauge', function () {
     return view('public.guage');
 });
 
@@ -46,7 +48,7 @@ Route::middleware([
 
     Route::prefix('user') -> group(function () {
         Route::get('/', [UserDashboardController::class, 'index']);
-        Route::resource('/user/applications', ApplicationsController::class);
+        Route::get('/applications', [UserApplicationsController::class, 'index']);
     });
 
     Route::prefix('admin') -> middleware(['isAdmin']) -> group(function () {
@@ -69,4 +71,6 @@ Route::prefix('api') -> group(function (){
     Route::get('/wallet/create', [EthController::class, 'createWallet']);
 
     Route::get('/applications/create', [UserApplication::class, 'create']);
+
+    Route::get('/credit/score/{id}', [CreditScoreController::class, 'fetch']);
 });

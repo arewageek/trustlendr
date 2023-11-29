@@ -3,6 +3,8 @@ import { Web3 } from 'web3'
 import ABI from './abi/abi.json'
 // require('./abi/abi.json')
 
+const contractAddr = '0xc4e40B693e6060CC16D364dBDF2Ff0e18A6e5cf0'
+
 const checkMetamask = () => {
     if(window.ethereum == undefined){
         alert("Please install metamask on your browser first")
@@ -21,7 +23,7 @@ const init = () => {
     window.web3 = web3;
 }
 
-const walletConnect = async () => {
+export const walletConnect = async () => {
     
     checkMetamask()
 
@@ -41,7 +43,7 @@ const walletConnect = async () => {
 
 }
 
-const sessionCheck = async () => {
+export const sessionCheck = async () => {
     const acct = await web3.eth.getAccounts();
 
     if(acct.length >= 1){
@@ -54,9 +56,8 @@ const sessionCheck = async () => {
     }
 }
 
-const connect2contract = () => {
+export const connect2contract = () => {
     const abi = ABI.abi;
-    const contractAddr = '0xccb1CFAeA7EB09f6381e66aD47d2983f14663B27'
 
     const contract = new web3.eth.Contract(abi, contractAddr)
 
@@ -64,7 +65,7 @@ const connect2contract = () => {
 }
 
 
-const checkCreditScore = async () => {
+export const checkCreditScore = async () => {
     if(sessionCheck){
         // const web3 = window.web3;
         const account = localStorage.getItem('account')
@@ -84,7 +85,7 @@ const checkCreditScore = async () => {
     }
 }
 
-const takeLoan = async(amount, repaymentDate, interestRate, lateRepaymentFees) => {
+export const takeLoan = async(amount, repaymentDate, interestRate, lateRepaymentFees) => {
     try{
         if(sessionCheck){
             const account = localStorage.getItem('account')
@@ -117,11 +118,6 @@ init();
 sessionCheck();
 
 const session = await sessionCheck();
-
-
-$('loan-app-btn ').click(() => {
-    if(!session) walletConnect();
-})
 
 window.eth = {
     session,

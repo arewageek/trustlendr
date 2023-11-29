@@ -16,13 +16,14 @@ class UserDashboardController extends Controller
         $pendingApplicationsCount = Application::where(['applicant' => $id, 'status' => 'pending']) -> count();
 
         $pendingApplicationsList = Application::where(['applicant' => $id, 'status' => 'pending']) -> orderBy('id', 'desc') -> limit(10) -> get();
-        $approvedApplicationsList = Application::where(['applicant' => $id, 'status' => 'approved' ]) -> orderBy('id', 'desc') -> limit(20) -> get();
+        $approvedApplicationsList = Application::where(['applicant' => $id, 'status' => 'confirmed' ]) -> orderBy('id', 'desc') -> limit(20) -> get();
 
         $approvedApplicationsPercentage = $applicationsCount > 0 ? ($approvedApplicationsCount/$applicationsCount) * 100 : 0;
         $pendingApplicationsPercentage = $applicationsCount > 0 ? ($pendingApplicationsCount/$applicationsCount) * 100 : 0;
 
         $rejectedApplications = Application::where(['applicant' => $id, 'status' => 'rejected']) -> count();
         $rejectedApplicationsPercent = $applicationsCount > 0 ? ($rejectedApplications/$applicationsCount) * 100 : 0;
+        
         
         
         return view('user.dashboard', [

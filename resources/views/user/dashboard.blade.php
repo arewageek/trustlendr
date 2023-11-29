@@ -197,7 +197,7 @@
                                 <div class="font-bold text-sm italic">
                                     Lender Information
                                 </div>
-                                <select type="number" name="interest" class="w-full px-3 py-2 text-sm border-0 shadow-lg rounded-lg interest" required>
+                                <select type="number" name="interest" class="w-full px-3 py-2 text-sm border-0 shadow-lg  rounded-lg interest" required>
                                     <option>Choose Lender</option>
                                     <option value="20">Fairmoney (20% Interest, 350 Minimum Credit Score)</option>
                                     <option value="10">Monie Point (10% Interest, 100 Minimum Credit Score)</option>
@@ -211,7 +211,7 @@
                                 <div class="font-bold text-sm italic">
                                     Loan Amount
                                 </div>
-                                <input type="number" name="amount" class="w-full px-3 py-2 text-sm border-0 shadow-lg rounded-lg amount" placeholder="Enter the loan amount here" required autocomplete="" />
+                                <input type="number" name="amount" class="w-full px-3 py-2 text-sm border-0 shadow-lg  rounded-lg amount" placeholder="Enter the loan amount here" required autocomplete="" />
                             </div>
                         </div>
 
@@ -220,7 +220,7 @@
                                 <div class="font-bold text-sm italic">
                                     Loan Duration
                                 </div>
-                                {{-- <select type="number" name="duration" class="w-full px-3 py-2 text-sm border-0 shadow-lg rounded-lg duration" required>
+                                {{-- <select type="number" name="duration" class="w-full px-3 py-2 text-sm border-0 shadow-lg  rounded-lg duration" required>
                                     <option>Choose Preferred Repayment Duration</option>
                                     <option value="1">1 Month</option>
                                     <option value="2">2 Month</option>
@@ -233,7 +233,7 @@
                                     <option value="36">3 Year</option>
                                 <select> --}}
 
-                                <input type="date" name="duration" class="w-full px-3 py-2 text-sm border-0 shadow-lg rounded-lg duration" required>
+                                <input type="date" name="duration" class="w-full px-3 py-2 text-sm border-0 shadow-lg  rounded-lg duration" required>
                             </div>
                         </div>
 
@@ -439,7 +439,7 @@
                             res.message.map((trx, index) => {
                                 $('.applications-table-body').append(`
                                     <tr class="border-b-2 border-gray-300 hover:bg-gray-200 cursor-pointer text-xs">
-                                        <td class="p-2">${ index++ }</td>
+                                        <td class="p-2">${ ++index }</td>
                                         <td class="p-2">${ trx.applicant}</td>
                                         <td class="p-2">&#8358;${Number(trx.amount).toLocaleString()}</td>
                                         <td class="p-2">&#8358;${Number(trx.interest).toLocaleString()}</td>
@@ -512,6 +512,7 @@
 
                         <tbody class="applications-table-body">
                             <?php $allAppID = 0; ?>
+
                             @foreach($approvedApplications['list'] as $apps)
                             
                                 <tr class="border-b-2 border-gray-300 hover:bg-gray-200 cursor-pointer text-xs">

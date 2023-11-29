@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table -> string('role') -> default('user');
             $table -> string('blockchainID');
-            $table -> integer('score') -> default(100);
+            $table -> integer('score') -> default(850);
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

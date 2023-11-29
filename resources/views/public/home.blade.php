@@ -12,7 +12,7 @@
                         <p>unlock blockchain possibilities </p>
                     
                         </div>
-                        <a href="#" class="btn btn-primary"> View More </a>
+                        <a href="/user" class="btn btn-primary"> View More </a>
                     </div>
                     
                     <div class="header-social">
@@ -251,7 +251,7 @@
                                         placeholder="NGN11200">
 
                                 </div>
-                                <button class="btn btn-primary w-100 mt-4">Apply For The Loan</button>
+                                <button onclick="javascript: window.location.href='/user'" type="button" class="btn btn-primary w-100 mt-4">Apply For The Loan</button>
                             </form>
                         </div>
                     </div>
