@@ -24,7 +24,8 @@ class UserDashboardController extends Controller
         $rejectedApplications = Application::where(['applicant' => $id, 'status' => 'rejected']) -> count();
         $rejectedApplicationsPercent = $applicationsCount > 0 ? ($rejectedApplications/$applicationsCount) * 100 : 0;
         
-        
+        $oldestLoanData = Application::where(['applicant' => $id, 'status' => 'confirmed']) -> first();
+        // $oldestLoanArr = $oldestLoanData[0];
         
         return view('user.dashboard', [
             'applicationsCount' => $applicationsCount,
@@ -39,7 +40,8 @@ class UserDashboardController extends Controller
                 'list' => $pendingApplicationsList
             ],
             'rejectedApplicationsPercent' => $rejectedApplicationsPercent,
-            'rejectedApplicationsCount' => $rejectedApplications
+            'rejectedApplicationsCount' => $rejectedApplications,
+            'oldestLoan' => $oldestLoanData
         ]);
     }
 }

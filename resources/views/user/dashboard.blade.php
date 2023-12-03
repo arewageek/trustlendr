@@ -100,6 +100,56 @@
         </div>
     </div>
 
+    <div class="p-4">
+        <div class="w-full rounded-lg bg-gray-50 shadow-lg p-5">
+            <div class="font-bold text-sm pb-5">Up For Repayment:</div>
+            <div class="w-full flex justify-around text-sm font-semibold">
+                <div class="w-full md:w-2/3 py-3 flex justify-around">
+                    <div>
+                        {{ $oldestLoan['app_id'] }}
+                    </div>
+                    <div>
+                        &#8358;{{ $oldestLoan['amount'] + $oldestLoan['interest'] }} (Total Amount)
+                    </div>
+                    <div>
+                        {{ $oldestLoan['due_date'] }}
+                    </div>
+                </div>
+        
+                <div class="w-full md:w-1/3 flex justify-center item-center text-xs">
+                    <button type="button" onclick="repayLoan()" class="loan-repay-btn bg-slate-800 px-5 py-3 rounded-md text-slate-100 hover:text-slate-50 hover:bg-slate-700 flex items-center justify-center space-x-3">
+                        <div class="repay-loan-btn">
+                            Repay Loan
+                        </div>
+                        <div class="hidden repay-loader">
+                            <div class="w-[15pt] h-[15pt] rounded-full border-2 border-gray-300 border-r-0 border-t-0 animate-spin">
+                                
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function repayLoan() {
+            $('.repay-loader').show()
+            const repay = await window.eth.repayLoan()
+
+            if(repay){
+                alert("You have successfully repaid the loan")
+                console.log(repay)
+                window.location.reload()
+            }
+            else{
+                alert("Could not repay the loan")
+
+                $('.repay-loader').hide(2000)
+            }
+        }
+    </script>
+
     <div class="w-full flex justify-between flex-col md:flex-row space-y-4 md:space-y-0">
         <div class="w-full md:w-1/2 p-4 h-full">
             <div class="bg-gray-50 shadow-lg p-5 rounded-2xl h-full w-full">

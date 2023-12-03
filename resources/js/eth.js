@@ -3,7 +3,7 @@ import { Web3 } from 'web3'
 import ABI from './abi/abi.json'
 // require('./abi/abi.json')
 
-const contractAddr = '0xc4e40B693e6060CC16D364dBDF2Ff0e18A6e5cf0'
+const contractAddr = '0xC145027857072FCCf11C98eE09f3Fc22dEC94E83'
 
 const checkMetamask = () => {
     if(window.ethereum == undefined){
@@ -112,6 +112,29 @@ export const takeLoan = async(amount, repaymentDate, interestRate, lateRepayment
     }
 }
 
+const repayLoan = async () => {
+    try{
+        if(sessionCheck){
+            const account = localStorage.getItem('account')
+            const contract = await connect2contract();
+            const methods = contract.methods;
+
+            const response = await methods.repayLoan().send({
+                from : account
+            })
+
+            return response;
+        }
+        else{
+            alert("Please connect your metamask wallet first")
+        }
+    }
+
+    catch(e){
+        console.log(e)
+    }
+}
+
 
 init();
 // getAccount()
@@ -124,7 +147,8 @@ window.eth = {
     checkCreditScore,
     connect2contract,
     walletConnect,
-    takeLoan
+    takeLoan,
+    repayLoan
 }
 
 

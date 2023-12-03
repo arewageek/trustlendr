@@ -28,7 +28,7 @@ Route::get('/', function () {
     return view('public.home');
 });
 
-Route::get('/gauge', function () {
+Route::get('/guage', function () {
     return view('public.guage');
 });
 
