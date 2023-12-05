@@ -20,6 +20,7 @@
         {{-- <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.2/dist/full.min.css" rel="stylesheet" type="text/css" /> --}}
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
+        <script async src="/scripts/gauge.min.js"></script>
 
         <!-- Styles -->
         @livewireStyles
@@ -82,11 +83,18 @@
                     })
                 }
             }
+
+            function showUser(email){
+                $('.modal-user').fadeIn(500)
+            }
         
         </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700'>
+        
         <script>
             // const Web3 = require('web3')
 
@@ -157,11 +165,6 @@
                                 <div class="w-full">
                                     Users
                                 </div>
-                                <div class="w-full">
-                                    <div class="bg-gray-500 hover:bg-gray-900 transition h-[17pt] w-[17pt] text-xs rounded-md flex items-center justify-center text-gray-50">
-                                        10
-                                    </div>
-                                </div>
                             </a>
 
                             <a href="/admin/applications" class="flex w-full p-3 items-center space-x-4 text-sm  rounded-xl shadow-inner hover:bg-gray-100">
@@ -173,11 +176,6 @@
                                 <div class=" w-full flex justify-end items-center space-x-3">
                                     <div class="w-full">
                                         Applications
-                                    </div>
-                                    <div class="w-full">
-                                        <div class="bg-gray-500 hover:bg-gray-900 transition h-[17pt] w-[17pt] text-xs rounded-md flex items-center justify-center text-gray-50">
-                                            3
-                                        </div>
                                     </div>
                                 </div>
                             </a>

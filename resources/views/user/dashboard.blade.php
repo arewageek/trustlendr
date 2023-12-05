@@ -103,50 +103,74 @@
     <div class="p-4">
         <div class="w-full rounded-lg bg-gray-50 shadow-lg p-5">
             <div class="font-bold text-sm pb-5">Up For Repayment:</div>
-            <div class="w-full flex justify-around text-sm font-semibold">
-                <div class="w-full md:w-2/3 py-3 flex justify-around">
-                    <div>
-                        {{ $oldestLoan['app_id'] }}
-                    </div>
-                    <div>
-                        &#8358;{{ $oldestLoan['amount'] + $oldestLoan['interest'] }} (Total Amount)
-                    </div>
-                    <div>
-                        {{ $oldestLoan['due_date'] }}
-                    </div>
-                </div>
-        
-                <div class="w-full md:w-1/3 flex justify-center item-center text-xs">
-                    <button type="button" onclick="repayLoan()" class="loan-repay-btn bg-slate-800 px-5 py-3 rounded-md text-slate-100 hover:text-slate-50 hover:bg-slate-700 flex items-center justify-center space-x-3">
-                        <div class="repay-loan-btn">
-                            Repay Loan
-                        </div>
-                        <div class="hidden repay-loader">
-                            <div class="w-[15pt] h-[15pt] rounded-full border-2 border-gray-300 border-r-0 border-t-0 animate-spin">
-                                
+            @if($oldestLoan)
+                <div class="w-full flex justify-around text-sm font-semibold flex-col md:flex-row flex-wrap">
+                    <div class="w-full md:w-2/3 py-3 flex flex-col md:flex-row justify-around space-y-2 md:space-y-0">
+                        <div>
+                            <div class="flex items-center py-2 space-x-4 w-auto">
+                                <div>
+                                    {{ Str::limit($oldestLoan['app_id'], 10) }}
+                                </div>
+                                <div>
+                                    <button onclick="copy('{{ $oldestLoan['app_id'] }}')" class="rounded-md bg-gray-900 p-2 text-gray-200 hover:text-white hover:bg-gray-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6ZM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2Z" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </button>
+                        <div>
+                            &#8358;{{ $oldestLoan['amount'] + $oldestLoan['interest'] }} (Total Amount)
+                        </div>
+                        <div>
+                            {{ $oldestLoan['due_date'] }}
+                        </div>
+                    </div>
+            
+                    <div class="w-full md:w-1/3 flex md:justify-center item-center text-xs">
+                        <button type="button" onclick="repayLoan('{{ Auth() -> user() -> email }}', '{{ $oldestLoan['amount'] + $oldestLoan['interest'] }}', '{{ $oldestLoan['app_id'] }}')" class="loan-repay-btn bg-slate-800 px-5 py-3 rounded-md text-slate-100 hover:text-slate-50 hover:bg-slate-700 flex items-center justify-center space-x-3">
+                            <div class="repay-loan-btn">
+                                Repay Loan
+                            </div>
+                            <div class="hidden repay-loader">
+                                <div class="w-[15pt] h-[15pt] rounded-full border-2 border-gray-300 border-r-0 border-t-0 animate-spin">
+                                    
+                                </div>
+                            </div>
+                        </button>
+                    </div>
                 </div>
-            </div>
+
+                @else
+                    <div class="w-full text-center py-3 text-sm italic font-semibold">
+                        No loan available for Repayment
+                    </div>
+            @endif
         </div>
     </div>
 
     <script>
-        async function repayLoan() {
+        async function repayLoan(email, amount, trxId) {
             $('.repay-loader').show()
-            const repay = await window.eth.repayLoan()
+            const payment = await window.eth.pay(email, amount%1000, trxId)
+            
+            if(payment == 200){
+                const repay = await window.eth.repayLoan()
 
-            if(repay){
-                alert("You have successfully repaid the loan")
-                console.log(repay)
-                window.location.reload()
-            }
-            else{
-                alert("Could not repay the loan")
-
+                if(repay){
+                    alert("You have successfully repaid the loan")
+                    console.log(repay)
+                    window.location.reload()
+                }
+                else{
+                    alert("Could not repay the loan")
+                    
+                    $('.repay-loader').hide(2000)
+                }
                 $('.repay-loader').hide(2000)
             }
+            $('.repay-loader').hide(2000)
         }
     </script>
 
@@ -410,14 +434,13 @@
                                     const response = await takeLoan(rawData.amount, date, rawData.interest, 100);
 
                                     console.log(response)
-                                    // return ;
+                                   
                                     const data = rawData
                                     data.hash = response.transactionHash
                                     
                                     console.log(data)
 
                                     pushLoanApp2DB(data)  
-                                    
                                     
 
                                     setTimeout(() => {
@@ -509,7 +532,7 @@
                                         </td>
                                         <td class="p-2">${ trx.created_at }</td>
                                         <td class="p-2">${ trx.due_date }</td>
-                                        <td class="p-2 font-bold italic text-${ trx.status === 'pending' ? 'gray' : (trx.status === 'confirmed' ? 'green' : 'red') }-600">
+                                        <td class="p-2 font-bold italic text-${ trx.status == 'repaid' ? 'green' : (trx.status == 'servicing' ? 'blue' : (trx.status == 'declined' ? 'gray' : 'red')) }-600">
                                             ${ trx.status }
                                         </td>
                                     </tr>
@@ -571,7 +594,7 @@
                                     <td class="p-2">&#8358;{{ number_format($apps['amount']) }}</td>
                                     <td class="p-2">&#8358;{{ number_format($apps['interest']) }}</td>
                                     <td class="p-2">
-                                        <div class="flex items-center py-2 space-x-4 w-auto">
+                                        <div class="flex items-center py-2 flex-col md:flex-row flex-wrap space-x-4 w-auto">
                                             <div>
                                                 {{ Str::limit($apps['app_id'], 10) }}
                                             </div>
@@ -586,7 +609,7 @@
                                     </td>
                                     <td class="p-2">{{ $apps['created_at'] }}</td>
                                     <td class="p-2">{{ $apps['due_date'] }}</td>
-                                    <td class="p-2 font-bold italic text-{{ $apps['status'] === 'pending' ? 'gray' : ($apps['status'] === 'confirmed' ? 'green' : 'red') }}-600">
+                                    <td class="p-2 font-bold italic text-{{ $apps['status'] === 'repaid' ? 'green' : ($apps['status'] === 'servicing' ? 'blue' : ($apps['status'] === 'rejected' ? 'red' : 'gray')) }}-600">
                                         {{ $apps['status'] }}
                                     </td>
                                 </tr>

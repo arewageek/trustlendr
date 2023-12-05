@@ -73,4 +73,8 @@ Route::prefix('api') -> group(function (){
     Route::get('/applications/create', [UserApplication::class, 'create']);
 
     Route::get('/credit/score/{id}', [CreditScoreController::class, 'fetch']);
+
+    Route::get('/paystack/verify/{reference}/{amount}', [CreditScoreController::class, 'repay']);
+    
+    Route::get('/user/{user}', [UsersDataController::class, 'search']);
 });

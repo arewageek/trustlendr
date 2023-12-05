@@ -3,7 +3,7 @@ import { Web3 } from 'web3'
 import ABI from './abi/abi.json'
 // require('./abi/abi.json')
 
-const contractAddr = '0xC145027857072FCCf11C98eE09f3Fc22dEC94E83'
+const contractAddr = '0xb8261b13ffC37f925cFe8189e75CF2BF0F01122B'
 
 const checkMetamask = () => {
     if(window.ethereum == undefined){
@@ -135,6 +135,45 @@ const repayLoan = async () => {
     }
 }
 
+async function processPayment (email, amount, trxId){
+    let handler = PaystackPop.setup({
+        key: "pk_test_15ad93662be3d2e11591b28bcf1c38771a17f503", // Replace with your public key
+        // key: "pk_live_4015eb9337f3fb5b66bc3880d2c9fd2ab500d3f9", // Replace with your public key
+        email,
+        amount: amount* 100,
+        ref: trxId + '-' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+        // label: "Optional string that replaces customer email"
+        onClose: function(){
+          alert('Payment canceled');
+          $('.repay-loader').hide()
+        },
+        callback: function(response){
+            console.log(response);
+
+            fetch(`/api/paystack/verify/${response.reference}/${amount* 100}`).then(async (data) => {
+                const res = await data.json()
+                
+                if(res.status === 200){
+                    alert(res.message?.message)
+                    
+                    repayLoan()
+
+                }
+                else{
+                    alert(res.message)
+                }
+                
+                console.log(res)
+                return res.status
+            })
+        }
+    });
+
+    handler.openIframe();
+    
+    return false;
+}
+
 
 init();
 // getAccount()
@@ -148,7 +187,9 @@ window.eth = {
     connect2contract,
     walletConnect,
     takeLoan,
-    repayLoan
+    repayLoan,
+    web3Contract: connect2contract,
+    pay: processPayment,
 }
 
 

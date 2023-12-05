@@ -16,7 +16,7 @@
         integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <link rel="stylesheet" href="cs.css">
 
-    <title>Creditscore</title>
+    <title>{{ env('APP_NAME') }}</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         <div class="container-fluid">
 
             <a class="navbar-brand" href="">
-                <h1>creditscore</h1>
+                <h1>{{ env('APP_NAME') }}</h1>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -42,7 +42,7 @@
                         </ul>
 
                     </li>
-                    <li><a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+                    {{-- <li><a href="#">Pages <i class="fas fa-chevron-down"></i></a>
                         <ul class="drop">
                             <li><a href="#contact">About</a></li>
                             <li><a href="#">FAQ</a></li>
@@ -53,17 +53,16 @@
                             <li><a href="#">Terms & Conditions</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                         </ul>
-                    </li>
-                    <li><a href="services.html">Services</a>
+                    </li> --}}
+                    {{-- <li><a href="services.html">Services</a>
                         <ul>
                             <li><a href="#">Credit reports </a></li>
                             <li><a href="#">Policy</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li><a href="#">Block-chain</a>
                         <ul>
-                            <li><a href="score.html">Get your ID</a></li>
-                            <li><a href="#">News Details</a></li>
+                            <li><a href="/register">Get your ID</a></li>
                         </ul>
                     </li>
                     <li><a href="#contact">Contact</a></li>

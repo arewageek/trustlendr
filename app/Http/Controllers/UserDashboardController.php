@@ -12,20 +12,20 @@ class UserDashboardController extends Controller
         $id = Auth() -> user() -> blockchainID;
 
         $applicationsCount = Application::where(['applicant' => $id]) -> count();
-        $approvedApplicationsCount = Application::where(['applicant' => $id, 'status' => 'approved']) -> count();
+        $approvedApplicationsCount = Application::where(['applicant' => $id, 'status' => 'servicing']) -> count();
         $pendingApplicationsCount = Application::where(['applicant' => $id, 'status' => 'pending']) -> count();
 
         $pendingApplicationsList = Application::where(['applicant' => $id, 'status' => 'pending']) -> orderBy('id', 'desc') -> limit(10) -> get();
-        $approvedApplicationsList = Application::where(['applicant' => $id, 'status' => 'confirmed' ]) -> orderBy('id', 'desc') -> limit(20) -> get();
+        $approvedApplicationsList = Application::where(['applicant' => $id ]) -> orderBy('id', 'desc') -> limit(20) -> get();
 
         $approvedApplicationsPercentage = $applicationsCount > 0 ? ($approvedApplicationsCount/$applicationsCount) * 100 : 0;
         $pendingApplicationsPercentage = $applicationsCount > 0 ? ($pendingApplicationsCount/$applicationsCount) * 100 : 0;
 
-        $rejectedApplications = Application::where(['applicant' => $id, 'status' => 'rejected']) -> count();
+        $rejectedApplications = Application::where(['applicant' => $id, 'status' => 'declined']) -> count();
         $rejectedApplicationsPercent = $applicationsCount > 0 ? ($rejectedApplications/$applicationsCount) * 100 : 0;
         
-        $oldestLoanData = Application::where(['applicant' => $id, 'status' => 'confirmed']) -> first();
-        // $oldestLoanArr = $oldestLoanData[0];
+        $oldestLoanData = Application::where(['applicant' => $id, 'status' => 'servicing']) -> get();
+        // return $oldestLoanData;
         
         return view('user.dashboard', [
             'applicationsCount' => $applicationsCount,
@@ -41,7 +41,7 @@ class UserDashboardController extends Controller
             ],
             'rejectedApplicationsPercent' => $rejectedApplicationsPercent,
             'rejectedApplicationsCount' => $rejectedApplications,
-            'oldestLoan' => $oldestLoanData
+            'oldestLoan' => count($oldestLoanData) < 1 ? [] : $oldestLoanData[0]
         ]);
     }
 }
