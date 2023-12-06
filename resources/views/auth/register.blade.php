@@ -27,8 +27,15 @@
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" />
             </div>
+
+            <div class="mt-4">
+                <x-label for="bvn" value="{{ __('Enter yur BVN') }}" />
+                <x-input id="bvn" class="block mt-1 w-full" type="password" name="bvn" :value="old('bvn')" required autocomplete="bvn" />
+            </div>
+
+            <input type="hidden" id="blockchain_id" name="blockchain_id" />
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
@@ -62,10 +69,29 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ms-4">
+                <x-button class="ms-4 connect-wallet" type="button">
+                    {{ __('Generate Blockchain ID') }}
+                </x-button>
+                
+                <x-button class="ms-4 register-btn hidden">
                     {{ __('Register') }}
                 </x-button>
             </div>
+
+            <script>
+                $('.register-btn').hide()
+
+                $('.connect-wallet').click(async () => {
+                    await window.eth.walletConnect();
+                    const acct = localStorage.getItem('account')
+                    if(acct != ''){
+                        $('#blockchain_id').val(acct)
+                    }
+
+                    $('.register-btn').show()
+                    $('.connect-wallet').hide()
+                })
+            </script>
         </form>
     </x-authentication-card>
 </x-guest-layout>

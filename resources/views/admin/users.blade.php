@@ -39,124 +39,93 @@
                         res.message.map((user, id) => {
                             $('.modal-users').append(`
 
-                            <div class="modal-users bg-gray-50 text-gray-700 rounded-lg shadow-lg p-5 w-full md:w-3/4 mb-7">
-                                <div class="text-sm font-bold italic flex justify-between items-center py-5 mt-5">
-                                    <div>
-                                        User Credentials
-                                    </div>
-                    
-                                    <div>
-                                        <div class="text-red-500 text-sm cursor-pointer" onclick="javascript: $('.modal-users').toggle(500)">
-                                            [close]
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="w-full flex justify-between items-center flex-wrap text-center">
-                                    <div class="flex flex-col justify-center items-center w-[200pt] h-[200pt] md:w-[400pt] md:h-[300pt] overflow-hidden shadow-lg mx-auto rounded-lg">
-                                        <div id="demoGauge3" class="gauge md:w-[200pt] md:h-[200pt]" style="
-                                            --gauge-value:0;">
-            
-                                            <div class="tick-circlebackground"></div>
-                                            <div class="tick-circlegradient"></div>
-                                            <div class="tick-circlegradient-mask"></div>
-                                            <div class="ticks">
-                                                <div class="tithe" style="--gauge-tithe-tick:1;"></div>
-                                                <div class="tithe" style="--gauge-tithe-tick:2;"></div>
-                                                <div class="tithe" style="--gauge-tithe-tick:3;"></div>
-                                                <div class="tithe" style="--gauge-tithe-tick:4;"></div>
-                                                <div class="tithe" style="--gauge-tithe-tick:6;"></div>
-                                                <div class="tithe" style="--gauge-tithe-tick:7;"></div>
-                                                <div class="tithe" style="--gauge-tithe-tick:8;"></div>
-                                                <div class="tithe" style="--gauge-tithe-tick:9;"></div>
-                                                <div class="min"></div>
-                                                <div class="mid"></div>
-                                                <div class="max"></div>
-                                            </div>
-                                            <div class="tick-circle"></div>
-                                            {{-- <div id="remark" class="text-sm font-bold">Content</div> --}}
-
-                                            <div class="needle">
-                                                <div class="needle-head"></div>
-                                            </div>
-                                            <div class="labels">
-                                                <div class="value-label"></div>
-                                            </div>
-                                        </div>
-
-                                        <div id="remark" class="font-bold text-sm cursor-pointer hover:bg-purple-500 hover:text-purple-100 transition mb-5 shadow-xl bg-purple-600 text-purple-50 rounded-lg px-5 py-2">
-                                            Excellent
-                                        </div>
-                                    </div>
-                    
-                                    <div class="w-full my-5 md:w-1/2">
-                                        <h3 class="text-xl text-purple-700 font-bold px-7">Credit Factors</h3>
-                                        <div class="w-full flex justify-between px-2 flex-wrap">
-                                            <div class="w-full md:w-1/2 p-5">
-                                                <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
-                                                    <div class="font-black text-purple-700 text-xl">25%</div>
-                                                    <div class="text-xs font-bold">
-                                                        Payment History
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full md:w-1/2 p-5">
-                                                <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
-                                                    <div class="font-black text-purple-700 text-xl">25%</div>
-                                                    <div class="text-xs font-bold">
-                                                        Amount Owed
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full md:w-1/2 p-5">
-                                                <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
-                                                    <div class="font-black text-purple-700 text-xl">25%</div>
-                                                    <div class="text-xs font-bold">
-                                                        Credit History
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full md:w-1/2 p-5">
-                                                <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
-                                                    <div class="font-black text-purple-700 text-xl">25%</div>
-                                                    <div class="text-xs font-bold">
-                                                        New Credit
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="my-5 md:p-5 w-full">
-                                        <div class="shadow-xl w-full md:w-1/2 px-3 py-5">
-                                            <h3 class="font-bold text-2xl p-5 text-purple-700">
+                                <div class="modal-users chart px-4">
+                                    <div class="modal-users bg-gray-50 text-gray-700 rounded-lg shadow-lg p-5 w-full mb-7">
+                                        <div class="text-sm font-bold italic flex justify-between items-center py-5 mt-5">
+                                            <div>
                                                 User Credentials
-                                            </h3>
-                        
-                                            <div class="font-bold text-sm overflow-x-auto">
-                                                <table class="text-left text-sm">
-                                                    <tr>
-                                                        <th class="px-4 py-2">Name</th>
-                                                        <td class="px-4 py-2">${user.name}</td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <th class="px-4 py-2">Username</th>
-                                                        <td class="px-4 py-2">${user.username}</td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <th class="px-4 py-2">Email Address</th>
-                                                        <td class="px-4 py-2">${user.email}</td>
-                                                    </tr>
-                                                </table>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="w-full flex justify-between items-center flex-wrap text-center">
+                                            <div class="flex flex-col justify-center items-center w-[200pt] h-[200pt] md:w-[400pt] md:h-[300pt] overflow-hidden shadow-lg mx-auto rounded-lg">
+                                                <div id="demoGauge3" class="gauge md:w-[200pt] md:h-[200pt]" style="
+                                                    --gauge-value:0;">
+                                
+                                                    <div class="tick-circlebackground"></div>
+                                                    <div class="tick-circlegradient"></div>
+                                                    <div class="tick-circlegradient-mask"></div>
+                                                    <div class="ticks">
+                                                        <div class="tithe" style="--gauge-tithe-tick:1;"></div>
+                                                        <div class="tithe" style="--gauge-tithe-tick:2;"></div>
+                                                        <div class="tithe" style="--gauge-tithe-tick:3;"></div>
+                                                        <div class="tithe" style="--gauge-tithe-tick:4;"></div>
+                                                        <div class="tithe" style="--gauge-tithe-tick:6;"></div>
+                                                        <div class="tithe" style="--gauge-tithe-tick:7;"></div>
+                                                        <div class="tithe" style="--gauge-tithe-tick:8;"></div>
+                                                        <div class="tithe" style="--gauge-tithe-tick:9;"></div>
+                                                        <div class="min"></div>
+                                                        <div class="mid"></div>
+                                                        <div class="max"></div>
+                                                    </div>  
+                                                    <div class="tick-circle"></div>
+                                                    {{-- <div id="remark" class="text-sm font-bold">Content</div> --}}
+                                
+                                                    <div class="needle">
+                                                        <div class="needle-head"></div>
+                                                    </div>
+                                                    <div class="labels">
+                                                        <div class="value-label"></div>
+                                                    </div>
+                                                </div>
+                                
+                                                <div id="remark" class="font-bold text-sm cursor-pointer hover:bg-slate-500 hover:text-slate-100 transition mb-5 shadow-xl bg-slate-600 text-slate-50 rounded-lg px-5 py-2">
+                                                    Poor
+                                                </div>
+                                            </div>
+                                
+                                            <div class="w-full my-5 md:w-1/2">
+                                                <h3 class="text-xl text-slate-700 font-bold px-7">Credit Factors</h3>
+                                                <div class="w-full flex justify-between px-2 flex-wrap">
+                                                    <div class="w-full md:w-1/2 p-5">
+                                                        <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
+                                                            <div class="font-black text-slate-700 text-xl">25%</div>
+                                                            <div class="text-xs font-bold">
+                                                                Payment History
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full md:w-1/2 p-5">
+                                                        <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
+                                                            <div class="font-black text-slate-700 text-xl">25%</div>
+                                                            <div class="text-xs font-bold">
+                                                                Amount Owed
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full md:w-1/2 p-5">
+                                                        <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
+                                                            <div class="font-black text-slate-700 text-xl">25%</div>
+                                                            <div class="text-xs font-bold">
+                                                                Credit History
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full md:w-1/2 p-5">
+                                                        <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
+                                                            <div class="font-black text-slate-700 text-xl">25%</div>
+                                                            <div class="text-xs font-bold">
+                                                                New Credit
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        `)
+                            `)
                             
                         })
                     }
@@ -177,7 +146,7 @@
                     </div>
                 </div>
 
-                <div class="modal-users hidden">
+                <div class="modal-users chart px-4 hidden">
                     
                 </div>
                 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('interest');
             $table->string('app_id');
             $table -> string('status') -> default('pending');
+            $table -> string('health') -> default(50);
             $table->timestamp('due_date');
             $table->timestamps();
         });

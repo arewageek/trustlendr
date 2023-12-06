@@ -37,6 +37,9 @@ class UserApplication extends Controller
         $application -> due_date = $dueDate;
 
         if($application -> save()){
+
+            User::where(['blockchainID' => Auth() -> user() -> blockchainID]) -> update(['score' => Auth() -> user() -> score - 10]);
+            
             return response()->json([
                 'status' => 201,
                 'message' => "Successfully created an application"

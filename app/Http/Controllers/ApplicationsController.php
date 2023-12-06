@@ -86,7 +86,7 @@ class ApplicationsController extends Controller
         try{
             $id = $request -> id;
 
-            $updated = DB::table('applications') -> where(['app_id' => $id]) -> update(['status' => 'declined']);
+            $updated = DB::table('applications') -> where(['app_id' => $id]) -> update(['status' => 'declined', 'health' => 25]);
 
             if($updated){
                 return response()->json([

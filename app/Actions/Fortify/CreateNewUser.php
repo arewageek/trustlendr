@@ -30,6 +30,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            'bvn' => ['required', 'string', 'max:11', 'unique:users'],
         ])->validate();
 
         return User::create([
@@ -37,7 +38,9 @@ class CreateNewUser implements CreatesNewUsers
             'username' => $input['username'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'blockchainID' => $blockchainID,
+            // 'blockchainID' => $blockchainID,
+            'bvn' => $input['bvn'],
+            'blockchainID' => $input['blockchain_id']
         ]);
     }
 }

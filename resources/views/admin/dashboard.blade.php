@@ -6,7 +6,7 @@
 
     <div class="w-full flex justify-between flex-col md:flex-row space-y-4 md:space-y-0">
         <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center cursor-pointer">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex items-center cursor-pointer">
                 <div class="p-3">
                     <div class="bg-gray-900 shadow-md rounded-xl p-4 text-gray-50 hover:bg-gray-700 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center cursor-pointer">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex items-center cursor-pointer">
                 <div class="p-3">
                     <div class="bg-gray-900 shadow-md rounded-xl p-4 text-gray-50 hover:bg-gray-700 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-window-plus" viewBox="0 0 16 16">
@@ -52,9 +52,9 @@
         </div>
 
         <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center justify-between cursor-copy">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex items-center justify-between cursor-copy">
                 <div class="p-3 flex flex-col">
-                    <div class="text-xl md:text-3xl font-bold flex py-2">
+                    <div class="text-xl md:text-xl font-bold flex py-2">
                         Approved
                     </div>
                     
@@ -73,9 +73,9 @@
         </div>
         
         <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center justify-between cursor-wait">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex items-center justify-between cursor-wait">
                 <div class="p-3 flex flex-col">
-                    <div class="text-xl md:text-3xl font-bold flex py-2">
+                    <div class="text-xl md:text-xl font-bold flex py-2">
                         On-hold
                     </div>
                     

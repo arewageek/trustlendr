@@ -214,7 +214,7 @@
     </div>
     
     <script>
-        updateGauge({{ 300 }}, 'demoGauge3', 'remark');
+        updateGauge({{ Auth() -> user() -> score }}, 'demoGauge3', 'remark');
     </script>
 
     <div class="p-4">

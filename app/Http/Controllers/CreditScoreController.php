@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class CreditScoreController extends Controller
 {
@@ -67,8 +68,18 @@ class CreditScoreController extends Controller
 
                 // return $data -> data -> status;
                 if($data -> data -> status == 'success'){
+
+                    // $originalPayDayData = Application::where(['app_id' => $id]) -> first();
                     
-                    Application::where(['app_id' => $id]) -> update(['status' => 'repaid']);
+                    // $originalPayDay = new Carbon("{$originalPayDate}")
+                    $now = Carbon::now();
+                    
+                    $prevAppsHealth = Application::where(['applicant' => Auth() -> user() -> blockchainID]) -> sum('health');
+
+                    $creditScore = ($prevAppsHealth/100) * 850;
+                    
+                    Application::where(['app_id' => $id]) -> update(['status' => 'repaid', 'health' => 100]);
+                    User::where(['blockchainId' => Auth() -> user() -> blockchainId]) -> update(['score' => $creditScore]);
                     
                     return response()->json([
                         'status' => 200,

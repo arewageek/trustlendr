@@ -4,7 +4,7 @@ import { Core } from '@quicknode/sdk'
 import ABI from './abi/abi.json'
 // require('./abi/abi.json')
 
-const contractAddr = '0xb8261b13ffC37f925cFe8189e75CF2BF0F01122B'
+const contractAddr = '0x7F0f989D3F14D925475AB510170537b5ed27A94C'
 
 const checkMetamask = () => {
     if(window.ethereum == undefined){
@@ -182,10 +182,12 @@ sessionCheck();
 
 const session = await sessionCheck();
 
+const wssp = "wss://yolo-long-bridge.ethereum-sepolia.quiknode.pro/59d8208336c5c501e6165aa40196daa3632b383e/", 
+        httpp="https://yolo-long-bridge.ethereum-sepolia.quiknode.pro/59d8208336c5c501e6165aa40196daa3632b383e/"
 
 function getTrxs(address){
     const core = new Core({
-        endpointUrl: "https://yolo-long-bridge.ethereum-sepolia.quiknode.pro/59d8208336c5c501e6165aa40196daa3632b383e/",
+        endpointUrl: httpp,
         config: {
           addOns: {
             nftTokenV2: true,
