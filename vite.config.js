@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel, { refreshPaths } from 'laravel-vite-plugin';
+import { EventEmitter } from 'events';
 
 export default defineConfig({
     plugins: [

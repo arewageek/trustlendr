@@ -34,6 +34,7 @@
                         
                         
                         updateGauge({{ 500 }}, 'demoGauge3', 'remark');
+
                         $('.modal-users').show();
                         res.message.map((user, id) => {
                             $('.modal-users').append(`
@@ -176,7 +177,7 @@
                     </div>
                 </div>
 
-                <div class="modal-users hidden chart">
+                <div class="modal-users hidden">
                     
                 </div>
                 

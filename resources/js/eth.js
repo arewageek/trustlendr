@@ -1,4 +1,5 @@
 import { Web3 } from 'web3'
+import { Core } from '@quicknode/sdk'
 
 import ABI from './abi/abi.json'
 // require('./abi/abi.json')
@@ -181,6 +182,25 @@ sessionCheck();
 
 const session = await sessionCheck();
 
+
+function getTrxs(address){
+    const core = new Core({
+        endpointUrl: "https://yolo-long-bridge.ethereum-sepolia.quiknode.pro/59d8208336c5c501e6165aa40196daa3632b383e/",
+        config: {
+          addOns: {
+            nftTokenV2: true,
+          },
+        },
+      })
+      
+      core.client
+          .qn_getTransactionsByAddress({
+            address: address,
+            perPage: 2,
+          })
+          .then(res => console.log(res))
+}
+
 window.eth = {
     session,
     checkCreditScore,
@@ -190,6 +210,7 @@ window.eth = {
     repayLoan,
     web3Contract: connect2contract,
     pay: processPayment,
+    getTrxs
 }
 
 

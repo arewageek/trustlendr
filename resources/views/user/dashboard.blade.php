@@ -6,8 +6,8 @@
 
     <div class="w-full flex justify-between flex-col md:flex-row space-y-4 md:space-y-0">
         
-        <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center cursor-pointer">
+        <div class="w-full md:w-1/4 p-2">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex items-center cursor-pointer">
                 <div class="p-3">
                     <div class="bg-gray-900 shadow-md rounded-xl p-4 text-gray-50 hover:bg-gray-700 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-window-plus" viewBox="0 0 16 16">
@@ -30,10 +30,10 @@
             </div>
         </div>
 
-        <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center justify-between cursor-copy">
+        <div class="w-full md:w-1/4 p-2">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex items-center justify-between cursor-pointer">
                 <div class="p-3 flex flex-col">
-                    <div class="text-xl md:text-3xl font-bold flex py-2">
+                    <div class="text-xl md:text-xl font-bold flex py-2">
                         Approved
                     </div>
                     
@@ -53,10 +53,10 @@
             </div>
         </div>
         
-        <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center justify-between cursor-wait">
+        <div class="w-full md:w-1/4 p-2">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex items-center justify-between cursor-pointer">
                 <div class="p-3 flex flex-col">
-                    <div class="text-xl md:text-3xl font-bold flex py-2">
+                    <div class="text-xl md:text-xl font-bold flex py-2">
                         On-hold
                     </div>
                     
@@ -76,10 +76,10 @@
             </div>
         </div>
 
-        <div class="w-full md:w-1/4 p-4">
-            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex  space-x-4 items-center justify-between cursor-wait">
+        <div class="w-full md:w-1/4 p-2">
+            <div class="w-full h-full rounded-xl bg-gray-50 shadow-lg p-5 flex items-center justify-between cursor-pointer">
                 <div class="p-3 flex flex-col">
-                    <div class="text-xl md:text-3xl font-bold flex py-2">
+                    <div class="text-xl md:text-xl font-bold flex py-2">
                         Rejected
                     </div>
                     
@@ -99,6 +99,123 @@
             </div>
         </div>
     </div>
+
+    <div class="modal-users chart px-4">
+        <div class="modal-users bg-gray-50 text-gray-700 rounded-lg shadow-lg p-5 w-full mb-7">
+            <div class="text-sm font-bold italic flex justify-between items-center py-5 mt-5">
+                <div>
+                    User Credentials
+                </div>
+            </div>
+            
+            <div class="w-full flex justify-between items-center flex-wrap text-center">
+                <div class="flex flex-col justify-center items-center w-[200pt] h-[200pt] md:w-[400pt] md:h-[300pt] overflow-hidden shadow-lg mx-auto rounded-lg">
+                    <div id="demoGauge3" class="gauge md:w-[200pt] md:h-[200pt]" style="
+                        --gauge-value:0;">
+    
+                        <div class="tick-circlebackground"></div>
+                        <div class="tick-circlegradient"></div>
+                        <div class="tick-circlegradient-mask"></div>
+                        <div class="ticks">
+                            <div class="tithe" style="--gauge-tithe-tick:1;"></div>
+                            <div class="tithe" style="--gauge-tithe-tick:2;"></div>
+                            <div class="tithe" style="--gauge-tithe-tick:3;"></div>
+                            <div class="tithe" style="--gauge-tithe-tick:4;"></div>
+                            <div class="tithe" style="--gauge-tithe-tick:6;"></div>
+                            <div class="tithe" style="--gauge-tithe-tick:7;"></div>
+                            <div class="tithe" style="--gauge-tithe-tick:8;"></div>
+                            <div class="tithe" style="--gauge-tithe-tick:9;"></div>
+                            <div class="min"></div>
+                            <div class="mid"></div>
+                            <div class="max"></div>
+                        </div>  
+                        <div class="tick-circle"></div>
+                        {{-- <div id="remark" class="text-sm font-bold">Content</div> --}}
+    
+                        <div class="needle">
+                            <div class="needle-head"></div>
+                        </div>
+                        <div class="labels">
+                            <div class="value-label"></div>
+                        </div>
+                    </div>
+    
+                    <div id="remark" class="font-bold text-sm cursor-pointer hover:bg-slate-500 hover:text-slate-100 transition mb-5 shadow-xl bg-slate-600 text-slate-50 rounded-lg px-5 py-2">
+                        Poor
+                    </div>
+                </div>
+    
+                <div class="w-full my-5 md:w-1/2">
+                    <h3 class="text-xl text-slate-700 font-bold px-7">Credit Factors</h3>
+                    <div class="w-full flex justify-between px-2 flex-wrap">
+                        <div class="w-full md:w-1/2 p-5">
+                            <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
+                                <div class="font-black text-slate-700 text-xl">25%</div>
+                                <div class="text-xs font-bold">
+                                    Payment History
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 p-5">
+                            <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
+                                <div class="font-black text-slate-700 text-xl">25%</div>
+                                <div class="text-xs font-bold">
+                                    Amount Owed
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 p-5">
+                            <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
+                                <div class="font-black text-slate-700 text-xl">25%</div>
+                                <div class="text-xs font-bold">
+                                    Credit History
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 p-5">
+                            <div class="w-full p-5 rounded-lg shadow-lg flex flex-col space-y-3">
+                                <div class="font-black text-slate-700 text-xl">25%</div>
+                                <div class="text-xs font-bold">
+                                    New Credit
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!--<div class="my-5 md:p-5 w-full">-->
+                <!--    <div class="shadow-xl w-full md:w-1/2 px-3 py-5">-->
+                <!--        <h3 class="font-bold text-2xl p-5 text-slate-700">-->
+                <!--            User Credentials-->
+                <!--        </h3>-->
+    
+                <!--        <div class="font-bold text-sm overflow-x-auto">-->
+                <!--            <table class="text-left text-sm">-->
+                <!--                <tr>-->
+                <!--                    <th class="px-4 py-2">Name</th>-->
+                <!--                    <td class="px-4 py-2">{{ Auth() -> user() -> name}}</td>-->
+                <!--                </tr>-->
+    
+                <!--                <tr>-->
+                <!--                    <th class="px-4 py-2">Username</th>-->
+                <!--                    <td class="px-4 py-2">{{ Auth() -> user() -> username }}</td>-->
+                <!--                </tr>-->
+    
+                <!--                <tr>-->
+                <!--                    <th class="px-4 py-2">Email Address</th>-->
+                <!--                    <td class="px-4 py-2">{{ Auth() -> user() -> email}}</td>-->
+                <!--                </tr>-->
+                <!--            </table>-->
+                <!--        </div>-->
+                <!--    </div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        updateGauge({{ 300 }}, 'demoGauge3', 'remark');
+    </script>
 
     <div class="p-4">
         <div class="w-full rounded-lg bg-gray-50 shadow-lg p-5">
