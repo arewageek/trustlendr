@@ -84,21 +84,45 @@
                 }
             }
 
-            function showUser(email){
-                $('.modal-user').fadeIn(500)
+            function showUser(email, name, username, score){
+                $('.modal-user').toggle(500)
             }
         
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700'>
-        
-        <script>
-            // const Web3 = require('web3')
 
-            // const web3 = new Web3(new Web3.providers.httpProvider())
+        <link rel="stylesheet" href="/gauge.min.css?v=0.2.1">
+        <link rel="stylesheet" href="/gauge-glossy.min.css?v=0.2.1">
+        <link rel="stylesheet" href="/gauge-heat-scale.min.css?v=0.2.1">
+        
+        <style>
+            .gauge-example>.gauge-description {
+                padding: 3em;
+                text-align: left;
+            }
+    
+            .gauge-example>.gauge-description pre {
+                font-size: 12px;
+            }
+    
+            .gauge {
+                margin: auto;
+            }
+        </style>
+        <script>
+            function updateGauge(val, id, note) {
+                const min = 0, max = 850;
+                // const newGaugeDisplayValue = document.getElementById("gaugeValue-" + id).value;
+                const newGaugeValue = Math.floor(((val) / (max - min)) * 100);
+                document.getElementById(id).style.setProperty('--gauge-display-value', val);
+                
+                const remark = val >= 800 ? "Excellent" : (val >=740 ? "Very Good" : (val >= 670 ? "Good" : (val >= 580 ? "Fair" : (val >= 300 ? "Poor" : "Very Poor"))))
+                $(`#${note}`).html(remark);
+                
+                document.getElementById(id).style.setProperty('--gauge-value', newGaugeValue);
+            }
         </script>
         
     </head>
