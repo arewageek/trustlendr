@@ -108,9 +108,9 @@
                 </div>
             </div>
             
-            <div class="w-full flex justify-between items-center flex-wrap text-center">
+            <div class="w-full flex justify-around items-center flex-wrap text-center">
                 <div class="flex flex-col justify-center items-center w-[200pt] h-[200pt] md:w-[400pt] md:h-[300pt] overflow-hidden shadow-lg mx-auto rounded-lg">
-                    <div id="demoGauge3" class="gauge md:w-[200pt] md:h-[200pt]" style="
+                    <div id="demoGauge3" class="gauge w-auto h-auto md:w-[200pt] md:h-[200pt]" style="
                         --gauge-value:0;">
     
                         <div class="tick-circlebackground"></div>
@@ -270,7 +270,7 @@
     <script>
         async function repayLoan(email, amount, trxId) {
             $('.repay-loader').show()
-            const payment = await window.eth.pay(email, amount%1000, trxId)
+            const payment = await window.eth.pay(email, amount*100, trxId)
             
             if(payment == 200){
                 const repay = await window.eth.repayLoan()
@@ -285,9 +285,10 @@
                     
                     $('.repay-loader').hide(2000)
                 }
+            }
+            else{
                 $('.repay-loader').hide(2000)
             }
-            $('.repay-loader').hide(2000)
         }
     </script>
 

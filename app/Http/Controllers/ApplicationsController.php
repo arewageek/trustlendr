@@ -61,9 +61,12 @@ class ApplicationsController extends Controller
         try{
             $id = $request -> id;
 
-            $updated = DB::table('applications') -> where(['app_id' => $id]) -> update(['status' => 'servicing']);
+            $updated = DB::table('applications') -> where(['app_id' => $id]) -> update(['status' => 'servicing', 'health' => 52]);
 
             if($updated){
+
+                $this -> updateCreditScore($id);
+                
                 return response()->json([
                     'status' => 200,
                     'message' => "Your loan request has been confirmed"
@@ -78,6 +81,16 @@ class ApplicationsController extends Controller
         }
     }
 
+    private function updateCreditScore($id){
+        $creditscore = new CreditScoreController();
+
+        // get user's blockchain id before updating credit score
+        $app = Application::where(['app_id' => $id]) -> first();
+        $user = $app -> applicant;
+        
+        $creditscore -> updateCreditScore($user);
+    }
+    
     /**
      * Remove the specified resource from storage.
      */
@@ -88,7 +101,10 @@ class ApplicationsController extends Controller
 
             $updated = DB::table('applications') -> where(['app_id' => $id]) -> update(['status' => 'declined', 'health' => 25]);
 
+            
             if($updated){
+                $this -> updateCreditScore($id);
+
                 return response()->json([
                     'status' => 200,
                     'message' => "Your loan application has been rejected"

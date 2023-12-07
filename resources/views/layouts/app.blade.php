@@ -114,6 +114,7 @@
         <script>
             function updateGauge(val, id, note) {
                 const min = 0, max = 850;
+                
                 // const newGaugeDisplayValue = document.getElementById("gaugeValue-" + id).value;
                 const newGaugeValue = Math.floor(((val) / (max - min)) * 100);
                 // document.getElementById(id).style.setProperty('--gauge-display-value', val);
@@ -121,7 +122,9 @@
                 const remark = val >= 800 ? "Excellent" : (val >=740 ? "Very Good" : (val >= 670 ? "Good" : (val >= 580 ? "Fair" : (val >= 300 ? "Poor" : "Very Poor"))))
                 $(`#${note}`).html(remark);
                 
-                document.getElementById(`${id}`).style.setProperty('--gauge-value', newGaugeValue);
+                $('#demoGauge3').css({'--gauge-value': 82});
+                // document.getElementById('demoGauge3').style.setProperty('background', 'red')
+                console.log(val, id, note, newGaugeValue)
             }
         </script>
         

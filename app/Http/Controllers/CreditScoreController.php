@@ -29,6 +29,15 @@ class CreditScoreController extends Controller
         
     }
 
+    public function updateCreditScore ($user) {
+        $prevAppsHealth = Application::where(['applicant' => $user]) -> sum('health');
+        $prevAppsHealthCount = Application::where(['applicant' => $user]) -> count();
+
+        $creditScore = ($prevAppsHealth/(100 * $prevAppsHealthCount)) * 850;
+
+        User::where(['blockchainId' => $user]) -> update(['score' => $creditScore]);
+    }
+
     public function repay($reference, $amount){
         //  transaction verification
         $id_arr = explode('-',$reference);
@@ -73,13 +82,10 @@ class CreditScoreController extends Controller
                     
                     // $originalPayDay = new Carbon("{$originalPayDate}")
                     $now = Carbon::now();
-                    
-                    $prevAppsHealth = Application::where(['applicant' => Auth() -> user() -> blockchainID]) -> sum('health');
 
-                    $creditScore = ($prevAppsHealth/100) * 850;
+                    $this -> updateCreditScore(Auth() -> user() -> blockchainID);
                     
                     Application::where(['app_id' => $id]) -> update(['status' => 'repaid', 'health' => 100]);
-                    User::where(['blockchainId' => Auth() -> user() -> blockchainId]) -> update(['score' => $creditScore]);
                     
                     return response()->json([
                         'status' => 200,

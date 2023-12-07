@@ -23,34 +23,56 @@
     
                 <script>
                     async function searchUser () {
-                        const user = await fetch(`/api/user/${$('.user-input').val()}`)
+                        const users = await fetch(`/api/user/${$('.user-input').val()}`)
 
-                        const res = await user.json()
+                        const res = await users.json()
 
-                        console.log(res)
-
-                        const data = res.message[0]
-
-                        
-                        
-                        updateGauge({{ 500 }}, 'demoGauge3', 'remark');
-
+                        // console.log(res)
                         $('.modal-users').show();
-                        res.message.map((user, id) => {
-                            $('.modal-users').append(`
+                        const user = res.message[0]
+                        console.log(user)
+                        // res.message.map((user, id) => {
 
-                                <div class="modal-users chart px-4">
-                                    <div class="modal-users bg-gray-50 text-gray-700 rounded-lg shadow-lg p-5 w-full mb-7">
+                        const min = 0, max = 850, val = user.score, note = 'remark';
+                        
+                        // const newGaugeDisplayValue = document.getElementById("gaugeValue-" + id).value;
+                        const newGaugeValue = Math.floor(((val) / (max - min)) * 100);
+                        // document.getElementById(id).style.setProperty('--gauge-display-value', val);
+                        
+                        const remark = val >= 800 ? "Excellent" : (val >=740 ? "Very Good" : (val >= 670 ? "Good" : (val >= 580 ? "Fair" : (val >= 300 ? "Poor" : "Very Poor"))))
+                        $(`#${note}`).html(remark);
+                        
+                        // document.getElementById('demoGauge3').style.setProperty('--gauge-value', '82');
+                        // document.querySelector('#demoGauge3').style.setProperty('--gauge-value', '82');
+                        
+                        // document.getElementById('demoGauge3').style.setProperty('background', 'red')
+                        // console.log(val, id, note, newGaugeValue)
+                            
+                        // updateGauge(user.score, 'demoGauge3', 'remark');
+                        $('.modalUsers').html(`
+
+                            <style>
+                                .gauge-val {
+                                    --gauge-value: ${newGaugeValue};   
+                                }
+
+                                .gauge .labels .value-label::after {
+                                    counter-reset: gauge-value var(guage-value) !important;
+                                    content: counter(400) !important;
+                                }
+                            </style>
+
+                                    <div class="bg-gray-50 text-gray-700 rounded-lg shadow-lg p-5 w-full mb-7">
                                         <div class="text-sm font-bold italic flex justify-between items-center py-5 mt-5">
                                             <div>
                                                 User Credentials
                                             </div>
                                         </div>
                                         
-                                        <div class="w-full flex justify-between items-center flex-wrap text-center">
+                                        <div class="w-full flex justify-around items-center flex-wrap text-center">
                                             <div class="flex flex-col justify-center items-center w-[200pt] h-[200pt] md:w-[400pt] md:h-[300pt] overflow-hidden shadow-lg mx-auto rounded-lg">
-                                                <div id="demoGauge3" class="gauge md:w-[200pt] md:h-[200pt]" style="
-                                                    --gauge-value:0;">
+                                                <div id="demoGauge3" class="gauge md:w-[200pt] md:h-[200pt] gauge-val" style="
+                                                    --gauge-value: ${newGaugeValue};">
                                 
                                                     <div class="tick-circlebackground"></div>
                                                     <div class="tick-circlegradient"></div>
@@ -69,18 +91,20 @@
                                                         <div class="max"></div>
                                                     </div>  
                                                     <div class="tick-circle"></div>
-                                                    {{-- <div id="remark" class="text-sm font-bold">Content</div> --}}
+                                                    <div id="remark" class="text-sm font-bold">Content</div>
                                 
                                                     <div class="needle">
                                                         <div class="needle-head"></div>
                                                     </div>
                                                     <div class="labels">
-                                                        <div class="value-label"></div>
+                                                        <div class="value-label flex justify-center" id="label">
+                                                            ${val}.
+                                                        </div>
                                                     </div>
                                                 </div>
                                 
                                                 <div id="remark" class="font-bold text-sm cursor-pointer hover:bg-slate-500 hover:text-slate-100 transition mb-5 shadow-xl bg-slate-600 text-slate-50 rounded-lg px-5 py-2">
-                                                    Poor
+                                                    ${remark}
                                                 </div>
                                             </div>
                                 
@@ -123,11 +147,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
                             `)
                             
-                        })
+                        // })
                     }
                     
                     $('.search-user').click( async () => {
@@ -146,7 +169,7 @@
                     </div>
                 </div>
 
-                <div class="modal-users chart px-4 hidden">
+                <div class="modalUsers px-4">
                     
                 </div>
                 
@@ -192,7 +215,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="p-2">{{ $user['score'] }}%</td>
+                                    <td class="p-2">{{ $user['score'] }}</td>
                                     <td class="p-2">{{ $user['created_at'] }}</td>
                                 </tr>
                             @endforeach

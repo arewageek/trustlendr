@@ -38,7 +38,10 @@ class UserApplication extends Controller
 
         if($application -> save()){
 
-            User::where(['blockchainID' => Auth() -> user() -> blockchainID]) -> update(['score' => Auth() -> user() -> score - 10]);
+            $creditScore = new CreditScoreController();
+            $creditScore -> updateCreditScore(Auth() -> user() -> blockchainID);
+
+            // User::where(['blockchainID' => Auth() -> user() -> blockchainID]) -> update(['score' => Auth() -> user() -> score - 10]);
             
             return response()->json([
                 'status' => 201,

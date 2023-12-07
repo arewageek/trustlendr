@@ -128,11 +128,13 @@ const repayLoan = async () => {
         }
         else{
             alert("Please connect your metamask wallet first")
+            return null;
         }
     }
-
+    
     catch(e){
         console.log(e)
+        return null;
     }
 }
 
@@ -149,24 +151,30 @@ async function processPayment (email, amount, trxId){
           $('.repay-loader').hide()
         },
         callback: function(response){
-            console.log(response);
-
-            fetch(`/api/paystack/verify/${response.reference}/${amount* 100}`).then(async (data) => {
-                const res = await data.json()
-                
-                if(res.status === 200){
-                    alert(res.message?.message)
+            async function fullrequest(response){
+                console.log(response);
+    
+                fetch(`/api/paystack/verify/${response.reference}/${amount* 100}`).then(async (data) => {
+                    const res = await data.json()
                     
-                    repayLoan()
+                    if(res.status === 200){
+                        alert(res.message?.message)
+                        
+                        $('.repay-loader').show()
+                        const repaid = await repayLoan()
+                        console.log(repaid)
+    
+                    }
+                    else{
+                        alert(res.message)
+                    }
+                    
+                    console.log(res)
+                    return res.status
+                })
+            }
 
-                }
-                else{
-                    alert(res.message)
-                }
-                
-                console.log(res)
-                return res.status
-            })
+            fullrequest(response)
         }
     });
 
