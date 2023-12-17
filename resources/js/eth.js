@@ -1,5 +1,6 @@
-import { Web3 } from 'web3'
-import { Core } from '@quicknode/sdk'
+// import { Web3 } from 'web3'
+import Web3 from 'https://cdn.jsdelivr.net/npm/web3@4.3.0/+esm'
+// import { Core } from '@quicknode/sdk'
 
 import ABI from './abi/abi.json'
 // require('./abi/abi.json')
@@ -188,7 +189,7 @@ init();
 // getAccount()
 sessionCheck();
 
-const session = await sessionCheck();
+const session = sessionCheck();
 
 const wssp = "wss://yolo-long-bridge.ethereum-sepolia.quiknode.pro/59d8208336c5c501e6165aa40196daa3632b383e/", 
         httpp="https://yolo-long-bridge.ethereum-sepolia.quiknode.pro/59d8208336c5c501e6165aa40196daa3632b383e/"
